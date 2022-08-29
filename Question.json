@@ -1,0 +1,23 @@
+{
+    "Question": [
+      {
+        "id": 1,
+        "Question": "what among this is part of an Atom?",
+        "options1": "neutron",
+        "options2": "electron",
+        "options3": "proton",
+        "options4": "All",
+        "correct":"All"
+      },
+      {
+        "id": 2,
+        "Question": "what among this is part of an Atom?",
+        "options1": "neutron",
+        "options2": "electron",
+        "options3": "proton",
+        "options4": "All",
+        "correct":"All"
+      }
+      
+    ]
+  }
