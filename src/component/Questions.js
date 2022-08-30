@@ -15,15 +15,18 @@ font-size: 2em;
 `;
 
 function Questions(props) {
+
+    
+
     return (
         <>
-            {props.question?.map(question =>
-                <Wrapper key={question.id}>
-                    <Question>Question {question.id}/{props.question.length}</Question>
-                    <Text key={question.id}>{question.Question}</Text>
-                </Wrapper>
 
-            )}
+
+            <Wrapper>
+            <Question>Question {props.currentQuestion+1}/{props.question.length}</Question>
+                <Text>{props.question[props.currentQuestion].Question}</Text>
+            </Wrapper>
+
         </>
     )
 

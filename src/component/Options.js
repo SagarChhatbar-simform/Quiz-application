@@ -26,30 +26,28 @@ text-align: left;
 `;
 function Options(props) {
 
-    const checkAnswer = (e) => {
-        var ans = e.target.value;
-        props.question?.map(((question) => {
-            console.log(question.correct, ans)
-            if (question.correct === ans) {
-                console.log("correct")
-            }
-            else {
-                console.log("incorrect")
-            }
-        }))
-    }
+    const checkAnswer = (isTrue) => {
+        if (isTrue) {
+            props.setscore(props.score + 1);
+        }
 
+        const nextQuestion = props.currentQuestion + 1;
+        if (nextQuestion < props.question.length) {
+            props.setCurrentQuestion(nextQuestion);
+        } else {
+            props.setShowScore(true);
+        }
+
+    }
     return (
         <>
-            {props.question?.map(question =>
-                <Wrapper key={question.id}>
-                    {console.log(question)}
-                    <Button onClick={checkAnswer} value={question.options1}>{question.options1}</Button>
-                    <Button onClick={checkAnswer} value={question.options2}>{question.options2}</Button>
-                    <Button onClick={checkAnswer} value={question.options3}>{question.options3}</Button>
-                    <Button onClick={checkAnswer} value={question.options4}>{question.options4}</Button>
-                </Wrapper>
-            )}
+            <Wrapper >
+
+                {props.question[props.currentQuestion].options?.map(answerQuestion =>
+                    <Button key={answerQuestion.answerText} onClick={() => checkAnswer(answerQuestion.isTrue)} >{answerQuestion.answerText}</Button>
+                )}
+            </Wrapper>
+
         </>
 
     )
