@@ -15,21 +15,46 @@ const Wrapper = styled.div`
   display: flex;
   height: 100%;
 `;
-
+const Text = styled.h1`
+font-size: 2em;
+text-align:center;
+`;
 function Maincomponent() {
 
-    const [question, setquestion] = useState([]);
+    const [question, setQuestion] = useState(null);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [score, setscore] = useState(0);
+    const [showScore, setShowScore] = useState(false);
 
-    const getQuestions = () => { api.get('/').then(res => setquestion(res.data)).catch(err => { console.log(err) }) }
+
+    // const getQuestions = () => { api.get('/').then(res =>setQuestion(res.data)).catch(err => { console.log("In error:", err) }) }
 
     useEffect(() => {
-        getQuestions()
+        // getQuestions();
+        const fetchdata = async () => {
+            const res = await api.get('/');
+            const data = await res.data;
+         
+            setQuestion(data);
+        }
+        fetchdata();
     }, [])
+
+    // console.log(question)
+
+    if(!question) {return (<>Loading...</>)}
 
     return (
         <Wrapper>
-            <Questions question={question}/>
-            <Options question={question}/>
+            {showScore ? (
+				<Text>
+					You scored {score} out of {question.length}
+				</Text>
+			) : (
+                <>
+            <Questions question={question} currentQuestion={currentQuestion} />
+            <Options question={question} currentQuestion={currentQuestion} setscore={setscore} score={score} setCurrentQuestion={setCurrentQuestion}  showScore={showScore} setShowScore={setShowScore}/>
+            </>)}
         </Wrapper>
     )
 }
