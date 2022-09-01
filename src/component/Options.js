@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
-
+import { showScoreActions } from '../store/showScore';
+import { useDispatch, useSelector } from 'react-redux';
+import { scoreActions } from '../store/score';
+import { currentQuestionActions } from '../store/currentQuestion'
 
 const Wrapper = styled.div`
   width: 50%;
@@ -24,26 +27,32 @@ text-align: left;
     cursor:pointer;
   }
 `;
-function Options(props) {
+function Options() {
+
+    const dispatch = useDispatch();
+    const currentQuestion = useSelector(state => state.currentQuestion.iscurrentQuestion);
+    const question = useSelector(state => state.question.isQuestion.payload);
+
 
     const checkAnswer = (isTrue) => {
         if (isTrue) {
-            props.setscore(props.score + 1);
+            dispatch(scoreActions.correct());
         }
 
-        const nextQuestion = props.currentQuestion + 1;
-        if (nextQuestion < props.question.length) {
-            props.setCurrentQuestion(nextQuestion);
+        const nextQuestion = currentQuestion + 1;
+        if (nextQuestion < question.length) {
+            dispatch(currentQuestionActions.next());
+
         } else {
-            props.setShowScore(true);
+            dispatch(showScoreActions.show());
         }
-
     }
+
     return (
         <>
             <Wrapper >
 
-                {props.question[props.currentQuestion].options?.map(answerQuestion =>
+                {question[currentQuestion].options?.map(answerQuestion =>
                     <Button key={answerQuestion.answerText} onClick={() => checkAnswer(answerQuestion.isTrue)} >{answerQuestion.answerText}</Button>
                 )}
             </Wrapper>

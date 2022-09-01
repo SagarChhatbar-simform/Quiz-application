@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components';
 import Options from './Options';
 import Questions from './Questions';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { api } from '../App'
-
+import { useSelector,useDispatch } from 'react-redux';
+import {questionActions} from '../store/question'
 
 const Wrapper = styled.div`
   background: #3f4964;
@@ -16,45 +17,45 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 const Text = styled.h1`
-font-size: 2em;
-text-align:center;
+font-size: 4em;
+text-align: center;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
 `;
 function Maincomponent() {
 
-    const [question, setQuestion] = useState(null);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setscore] = useState(0);
-    const [showScore, setShowScore] = useState(false);
-
-
-    // const getQuestions = () => { api.get('/').then(res =>setQuestion(res.data)).catch(err => { console.log("In error:", err) }) }
+    // const [question, setQuestion] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // getQuestions();
         const fetchdata = async () => {
             const res = await api.get('/');
             const data = await res.data;
-         
-            setQuestion(data);
+            dispatch(questionActions.quest(data));
         }
         fetchdata();
-    }, [])
+    }, [dispatch])
 
-    // console.log(question)
+    const showScore = useSelector(state => state.showScore.isShowScore);
+    const score = useSelector(state => state.score.isScore);
+    const question = useSelector( state => state.question.isQuestion.payload);
+    console.log(question)
 
-    if(!question) {return (<>Loading...</>)}
+    if (!question) { return (<>Loading...</>) }
 
     return (
         <Wrapper>
             {showScore ? (
-				<Text>
-					You scored {score} out of {question.length}
-				</Text>
-			) : (
+                <Text>
+                    You scored {score} out of {question.length}
+                </Text>
+            ) : (
                 <>
-            <Questions question={question} currentQuestion={currentQuestion} />
-            <Options question={question} currentQuestion={currentQuestion} setscore={setscore} score={score} setCurrentQuestion={setCurrentQuestion}  showScore={showScore} setShowScore={setShowScore}/>
-            </>)}
+                    <Questions />
+                    <Options />
+                </>)}
         </Wrapper>
     )
 }
