@@ -1,31 +1,31 @@
 {
-    "Question": [
-      {
-        "Question": "what among this is part of an Atom?",
-        "options":[
-          {"answerText":"neutron","isTrue":false},
-          {"answerText":"electron","isTrue":false},
-          {"answerText":"proton","isTrue":false},
-          {"answerText":"All","isTrue":true}
-        ] 
-      },
-      {
-        "Question": "who is president of India?",
-        "options":[
-          {"answerText":"murmu","isTrue":true},
-          {"answerText":"kovind","isTrue":false},
-          {"answerText":"kalam","isTrue":false},
-          {"answerText":"modi","isTrue":false}
-        ] 
-      },
-      {
-        "Question": "what among this is part of an Atom?",
-        "options":[
-          {"answerText":"neutron","isTrue":false},
-          {"answerText":"electron","isTrue":false},
-          {"answerText":"proton","isTrue":false},
-          {"answerText":"All","isTrue":true}
-        ] 
-      }       
-    ]
-  }
+  "Question": [
+    {
+      "Question": "what among this is part of an Atom?",
+      "options": [
+        { "answerText": "neutron", "isTrue": false },
+        { "answerText": "electron", "isTrue": false },
+        { "answerText": "proton", "isTrue": false },
+        { "answerText": "All", "isTrue": true }
+      ]
+    },
+    {
+      "Question": "who is president of India?",
+      "options": [
+        { "answerText": "murmu", "isTrue": true },
+        { "answerText": "kovind", "isTrue": false },
+        { "answerText": "kalam", "isTrue": false },
+        { "answerText": "modi", "isTrue": false }
+      ]
+    },
+    {
+      "Question": "what among this is part of an Atom?",
+      "options": [
+        { "answerText": "neutron", "isTrue": false },
+        { "answerText": "electron", "isTrue": false },
+        { "answerText": "proton", "isTrue": false },
+        { "answerText": "All", "isTrue": true }
+      ]
+    }
+  ]
+}

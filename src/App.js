@@ -10,7 +10,7 @@ export const api = axios.create({
 function App() {
   return (
     <div className="App">
-      <Quiz/>
+      <Quiz />
     </div>
   );
 }

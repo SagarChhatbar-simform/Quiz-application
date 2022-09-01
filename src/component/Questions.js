@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
 
 
 
@@ -14,17 +16,15 @@ const Text = styled.h1`
 font-size: 2em;
 `;
 
-function Questions(props) {
+function Questions() {
 
-    
-
+    const currentQuestion = useSelector(state => state.currentQuestion.iscurrentQuestion);
+    const question = useSelector(state => state.question.isQuestion.payload);
     return (
         <>
-
-
             <Wrapper>
-            <Question>Question {props.currentQuestion+1}/{props.question.length}</Question>
-                <Text>{props.question[props.currentQuestion].Question}</Text>
+                <Question>Question {currentQuestion + 1}/{question.length}</Question>
+                <Text>{question[currentQuestion].Question}</Text>
             </Wrapper>
 
         </>
